@@ -1,0 +1,16 @@
+<% include ../partials/header %>
+
+
+<a href="/campgrounds/<%= campground._id%>">Go back</a>
+<form action="/campgrounds/<%= campground._id %>/comments" method="POST">
+    <label>Enter Author Name: </label>
+    <input type="text" placeholder="Author" name="comment[author]">
+    <br>
+    <label>Enter Comment: </label>
+    <input type="text" name="comment[text]">
+    <br>
+    <button type="submit" class="button">Submit</button>
+</form>
+
+
+<% include ../partials/footer %>

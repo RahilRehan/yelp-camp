@@ -1,4 +1,4 @@
-<% include partials/header %>
+<% include ../partials/header %>
 
 
 <h1>
@@ -13,6 +13,7 @@
         <li><%= comment.author %> - <%= comment.text %> </li>
     <% }) %>
 </div>
+<p><a href="/campgrounds/<%=campground._id%>/comments/new">New Comment!</a></p>
 
 
-<% include partials/footer %>
+<% include ../partials/footer %>

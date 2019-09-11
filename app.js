@@ -16,7 +16,7 @@ mongoose.connect("mongodb://localhost:27017/campgrounds", {useNewUrlParser:true}
 seedDB();
 
 app.get("/", function(req,res){
-    res.render("landing");
+    res.render("campgrounds/landing");
 });
 
 app.get("/campgrounds",function(req,res){
@@ -24,19 +24,19 @@ app.get("/campgrounds",function(req,res){
         if(err){
             console.log(err);
         }else{
-            res.render("campgrounds",{campgrounds:campgrounds});
+            res.render("campgrounds/campgrounds",{campgrounds:campgrounds});
         }
     })
 });
 
 app.get("/camgrounds/new", function(req,res){
-    res.render("new");
+    res.render("campgrounds/new");
 });
 
 app.get("/campgrounds/:id", function(req,res){
     id = req.params.id;
     Campground.findById(id).populate("comments").exec(function(err, campground){
-        res.render("display", {campground:campground});
+        res.render("campgrounds/display", {campground:campground});
     });
 });
 
@@ -51,6 +51,36 @@ app.post("/camgrounds", function(req,res){
         }
     })
 });
+
+app.get("/campgrounds/:id/comments/new", function(req, res){
+    Campground.findById(req.params.id, function(err, campground){
+        if(err){
+            console.log(err);
+        }else{
+            res.render("comments/newComment", {campground:campground});
+        }
+    })
+})
+
+app.post("/campgrounds/:id/comments", function(req, res){
+    Campground.findById(req.params.id, function(err, foundCampground){
+        if(err){
+            console.log(err);
+            res.redirect("/campgrounds")
+        }else{
+            Comment.create(req.body.comment, function(err, comment){
+                if(err){
+                    console.log(err);
+                }else{
+                    console.log(comment);
+                    foundCampground.comments.push(comment);
+                    foundCampground.save();
+                    res.redirect("/campgrounds/" + foundCampground._id);
+                }
+            })
+        }
+    })
+})
 
 app.listen(2900, function(){
     console.log("Server is running! ");
