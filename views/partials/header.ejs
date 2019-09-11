@@ -6,3 +6,12 @@
         <link rel="stylesheet" type="text/css" href="css/bulma.css">
     </head>
     <body>
+        <div style="text-align:right">
+            <% if(!currentUser){ %>
+                <a href="/login">Login</a> |
+                <a href="/register">Register</a>  
+            <% }else{ %>
+                <a>Signed in as <%= currentUser.username %> </a> | 
+                <a href="/logout">Logout</a>
+            <% } %>
+        </div>
