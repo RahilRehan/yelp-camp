@@ -1,4 +1,4 @@
-import { builtinModules } from "module";
+var mongoose = require("mongoose");
 
 var campgroundSchema = new mongoose.Schema({
     name:String,
