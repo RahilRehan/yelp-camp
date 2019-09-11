@@ -8,6 +8,11 @@
 <p>
     <%= campground.description %>
 </p>
+<div>
+    <% campground.comments.forEach(function(comment){ %>
+        <li><%= comment.author %> - <%= comment.text %> </li>
+    <% }) %>
+</div>
 
 
 <% include partials/footer %>

@@ -3,7 +3,8 @@ var express    = require("express"),
     bodyParser = require("body-parser"),
     mongoose   = require("mongoose"),
     seedDB     = require("./seed"),
-    Campground = require("./models/campground");
+    Campground = require("./models/campground"),
+    Comment = require("./models/comment");
 
 
 app.set("view engine", "ejs");
@@ -34,7 +35,7 @@ app.get("/camgrounds/new", function(req,res){
 
 app.get("/campgrounds/:id", function(req,res){
     id = req.params.id;
-    Campground.findById(id, function(err, campground){
+    Campground.findById(id).populate("comments").exec(function(err, campground){
         res.render("display", {campground:campground});
     });
 });

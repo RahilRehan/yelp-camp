@@ -1,0 +1,15 @@
+<% include partials/header %>
+
+<a href="/campgrounds/<%= id %>">Go back</a>
+<form action="/camgrounds/<%= id %>/comments" method="POST">
+    <label>Comment Title:</label>
+    <input type="text" placeholder="Title" name="title">
+    <br>
+    <label>Comment Text</label>
+    <input type="text" placeholder="Comment" name="text">
+    <br>
+    <button type="submit" class="button">Submit</button>
+</form>
+
+
+<% include partials/footer %>
