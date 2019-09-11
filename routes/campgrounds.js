@@ -1,8 +1,8 @@
 var express = require("express");
-var router = express.Router();
+var router = express.Router({mergeParams:true});
 var Campground = require("../models/campground");
 
-router.get("/campgrounds",function(req,res){
+router.get("/",function(req,res){
     Campground.find({}, function(err, campgrounds){
         if(err){
             console.log(err);
@@ -12,18 +12,18 @@ router.get("/campgrounds",function(req,res){
     })
 });
 
-router.get("/camgrounds/new", function(req,res){
+router.get("/new", function(req,res){
     res.render("campgrounds/new");
 });
 
-router.get("/campgrounds/:id", function(req,res){
+router.get("/:id", function(req,res){
     id = req.params.id;
     Campground.findById(id).populate("comments").exec(function(err, campground){
         res.render("campgrounds/display", {campground:campground});
     });
 });
 
-router.post("/camgrounds", function(req,res){
+router.post("/", function(req,res){
     var campground = {name:req.body.name, image:req.body.link, description:req.body.description};
     Campground.create(campground, function(err, campground){
         if(err){

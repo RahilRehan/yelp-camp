@@ -31,9 +31,9 @@ app.use(function(req, res, next){
     next();
 });
 
-app.use(indexRoutes);
-app.use(campgroundRoutes);
-app.use(commentRoutes);
+app.use("/", indexRoutes);
+app.use("/campgrounds", campgroundRoutes);
+app.use("/campgrounds/:id/comments", commentRoutes);
 
 mongoose.connect("mongodb://localhost:27017/campgrounds", {useNewUrlParser:true});
 
