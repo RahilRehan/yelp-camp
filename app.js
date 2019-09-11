@@ -34,8 +34,12 @@ app.get("/camgrounds/new", function(req,res){
 
 app.get("/campgrounds/:id", function(req,res){
     id = req.params.id;
-    Campground.findById(id, function(err, campground){
-        res.render("display", {campground:campground});
+    Campground.findById(id).populate("comments").exec(function(err, campground){
+        if(err){
+            console.log(err);
+        }else{
+            res.render("display", {campground:campground});
+        }
     });
 });
 
