@@ -27,40 +27,40 @@ data = [
 
 function seedDB(){
     Campground.deleteMany({}, function(err){
-        if(err){
-            console.log(err);
-        }
-        else{
-            //successfully removed campgrounds
-            console.log("Removed All campgrounds!");
-            Comment.remove({}, function(err){
-                if(err){
-                    console.log(err);
-                }else{
-                    console.log("Removed All comments!");
-                }
-            });
-            data.forEach(element => {
-                Campground.create(element, function(err, campground){
-                    if(err){
-                        console.log(err);
-                    }else{
-                        console.log("Campground Added");
-                        Comment.create({
-                            text:"This is random comment with random text on every page.",
-                            author:"Rahil"
-                        }, function(err, comment){
-                            if(err){
-                                console.log(err);
-                            }else{
-                                campground.comments.push(comment);
-                                campground.save();
-                            }
-                        });
-                    }
-                });
-            });
-        }
+        // if(err){
+        //     console.log(err);
+        // }
+        // else{
+        //     //successfully removed campgrounds
+        //     console.log("Removed All campgrounds!");
+        //     Comment.remove({}, function(err){
+        //         if(err){
+        //             console.log(err);
+        //         }else{
+        //             console.log("Removed All comments!");
+        //         }
+        //     });
+        //     data.forEach(element => {
+        //         Campground.create(element, function(err, campground){
+        //             if(err){
+        //                 console.log(err);
+        //             }else{
+        //                 console.log("Campground Added");
+        //                 Comment.create({
+        //                     text:"This is random comment with random text on every page.",
+        //                     author:"Rahil"
+        //                 }, function(err, comment){
+        //                     if(err){
+        //                         console.log(err);
+        //                     }else{
+        //                         campground.comments.push(comment);
+        //                         campground.save();
+        //                     }
+        //                 });
+        //             }
+        //         });
+        //     });
+        // }
     })
 }
 

@@ -37,7 +37,7 @@ app.use("/campgrounds/:id/comments", commentRoutes);
 
 mongoose.connect("mongodb://localhost:27017/campgrounds", {useNewUrlParser:true});
 
-seedDB();
+//seedDB();
 
 app.listen(2900, function(){
     console.log("Server is running! ");

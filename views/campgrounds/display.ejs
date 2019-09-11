@@ -7,10 +7,11 @@
 <img src="<%= campground.image%> " alt="Image not found">
 <p>
     <%= campground.description %>
+    <p>Campground author: <%= campground.author.username %></p>
 </p>
 <div>
     <% campground.comments.forEach(function(comment){ %>
-        <li><%= comment.author %> - <%= comment.text %> </li>
+        <li><%= comment.author.username %> - <%= comment.text %> </li>
     <% }) %>
 </div>
 <p><a href="/campgrounds/<%=campground._id%>/comments/new">New Comment!</a></p>
