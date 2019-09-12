@@ -18,7 +18,7 @@ router
 router.post("/", function(req, res){
     Campground.findById(req.params.id, function(err, foundCampground){
         if(err){
-            console.log(err);
+            req.flash("error", "Something went wrong");
             res.redirect("/campgrounds")
         }else{
             Comment.create(req.body.comment, function(err, comment){
@@ -30,6 +30,7 @@ router.post("/", function(req, res){
                     comment.save();
                     foundCampground.comments.push(comment);
                     foundCampground.save();
+                    req.flash("success", "Successfully added comment");
                     res.redirect("/campgrounds/" + foundCampground._id);
                 }
             });
@@ -65,6 +66,7 @@ router.delete("/:comment_id", middleware.checkCommentsOwnership, function(req, r
         if(err){
             res.redirect("back");
         }else{
+            req.flash("success", "Comment deleted");
             res.redirect("/campgrounds/" + req.params.id);
         }
     });

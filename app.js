@@ -6,7 +6,8 @@ var express    = require("express"),
     methodOverride = require("method-override");
     User       = require("./models/user"),
     passport   = require("passport"),
-    LocalStrategy=require("passport-local");
+    LocalStrategy=require("passport-local"),
+    flash        = require("connect-flash");
 
 var campgroundRoutes = require("./routes/campgrounds"),
     commentRoutes    = require("./routes/comments"),
@@ -21,6 +22,7 @@ app.use(require("express-session")({
     resave: false,
     saveUninitialized: false
 }))
+app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
@@ -28,6 +30,8 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 app.use(function(req, res, next){
     res.locals.currentUser = req.user;
+    res.locals.error = req.flash("error");
+    res.locals.success = req.flash("success");
     next();
 });
 
