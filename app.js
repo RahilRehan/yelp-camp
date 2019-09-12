@@ -3,8 +3,7 @@ var express    = require("express"),
     bodyParser = require("body-parser"),
     mongoose   = require("mongoose"),
     seedDB     = require("./seed"),
-    Campground = require("./models/campground"),
-    Comment    = require("./models/comment"),
+    methodOverride = require("method-override");
     User       = require("./models/user"),
     passport   = require("passport"),
     LocalStrategy=require("passport-local");
@@ -16,6 +15,7 @@ var campgroundRoutes = require("./routes/campgrounds"),
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static('public'));
+app.use(methodOverride("_method"));
 app.use(require("express-session")({
     secret: "Yelp Camp Project",
     resave: false,

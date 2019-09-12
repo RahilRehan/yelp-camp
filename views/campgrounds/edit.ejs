@@ -1,0 +1,17 @@
+<% include ../partials/header %>
+<h1>EDit campground route</h1>
+<a href="/campgrounds">Go back</a>
+<form action="/campgrounds/<%=campground._id%>?_method=PUT" method="POST">
+    <label>Enter name of campground:</label>
+    <input type="text" placeholder="Name" name="campground[name]" value="<%=campground.name%>">
+    <br>
+    <label>Enter image link:</label>
+    <input type="text" placeholder="Link" name="campground[image]" value="<%=campground.image%>">
+    <br>
+    <label>Enter Description:</label>
+    <textarea name="campground[description]" cols="30" rows="10">"<%=campground.description%>" </textarea>
+    <br>
+    <button type="submit" class="button">Submit</button>
+</form>
+
+<% include ../partials/footer %>
