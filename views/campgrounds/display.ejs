@@ -1,37 +1,54 @@
 <% include ../partials/header %>
 
-
-<h1>
-    <%= campground.name %>
-</h1>
-<img src="<%= campground.image%> " alt="Image not found">
-<p>
-    <%= campground.description %>
-    <p>Campground author: <%= campground.author.username %></p>
-    <% if(currentUser && campground.author.id.equals(currentUser._id)){ %>
-        <button><a href="/campgrounds/<%=campground._id%>/edit">Edit</a></button>
-        <form action="/campgrounds/<%=campground._id%>?_method=DELETE" method="post">
-            <button>Delete</button>
-        </form>
-    <% } %>
-    
-</p>
-<br><br><br>
-<p>Comments</p>
-<div>
-    <% campground.comments.forEach(function(comment){ %>
-        <li><%= comment.author.username %> - <%= comment.text %> </li>
-        <% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
-            <button>
-                <a href="/campgrounds/<%=campground._id%>/comments/<%=comment._id%>/edit">Edit</a>
-            </button>
-            <form action="/campgrounds/<%=campground._id%>/comments/<%=comment._id%>?_method=DELETE" method="post">
-                <button>delete</button>
+<div class="block container need-margin">
+    <div class="card">
+        <div class="card-image">
+            <img width="640" height="160" src="<%= campground.image%>" alt="Placeholder image">
+        </div>
+        <div class="card-content">
+            <div class="media">
+            <div class="media-content">
+                <p class="title is-4"><%= campground.name %></p>
+                <p class="subtitle is-6">@<%= campground.author.username %></p>
+            </div>
+            </div>
+        
+            <div class="content">
+                <%= campground.description %> - <a><%= campground.author.username %></a>.
+            </div>
+            <% if(currentUser && campground.author.id.equals(currentUser._id)){ %>
+            <a href="/campgrounds/<%=campground._id%>/edit" class="tag is-warning is-medium">Edit</a>
+            <form action="/campgrounds/<%=campground._id%>?_method=DELETE" method="post" style="display:inline">
+                <button class="tag is-danger is-medium">Delete</button>
             </form>
         <% } %>
-    <% }) %>
-</div>
-<p><a href="/campgrounds/<%=campground._id%>/comments/new">New Comment!</a></p>
+        </div>
+        </div>
 
+
+
+        <div class="block">
+            <div class="box">
+                <h1 class="title">Comments</h1>
+                <% campground.comments.forEach(function(comment){ %>
+                <article class="message is-info">
+                    <div class="message-header">
+                        <p><%=comment.author.username %></p>
+                    </div>
+                    <div class="message-body">
+                        <%= comment.text %>
+                    </div>
+                    <% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
+                        <a href="/campgrounds/<%=campground._id%>/comments/<%=comment._id%>/edit" class="tag is-warning is-medium">Edit</a>
+                        <form action="/campgrounds/<%=campground._id%>/comments/<%=comment._id%>?_method=DELETE" method="post" style="display:inline">
+                            <button class="tag is-danger is-medium">Delete</button>
+                        </form>
+                    <% } %>
+                </article>
+            <% }) %>
+            </div>
+            <p><a href="/campgrounds/<%=campground._id%>/comments/new">New Comment!</a></p>
+        </div>
+</div>
 
 <% include ../partials/footer %>

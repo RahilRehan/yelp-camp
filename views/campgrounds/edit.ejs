@@ -1,17 +1,33 @@
 <% include ../partials/header %>
+
+
+
+
+
 <h1>EDit campground route</h1>
-<a href="/campgrounds">Go back</a>
-<form action="/campgrounds/<%=campground._id%>?_method=PUT" method="POST">
-    <label>Enter name of campground:</label>
-    <input type="text" placeholder="Name" name="campground[name]" value="<%=campground.name%>">
-    <br>
-    <label>Enter image link:</label>
-    <input type="text" placeholder="Link" name="campground[image]" value="<%=campground.image%>">
-    <br>
-    <label>Enter Description:</label>
-    <textarea name="campground[description]" cols="30" rows="10">"<%=campground.description%>" </textarea>
-    <br>
-    <button type="submit" class="button">Submit</button>
-</form>
+
+
+<div class="block need-margin">
+    <form action="/campgrounds/<%=campground._id%>?_method=PUT" method="POST" class="lrf">
+        <div class="field">
+            <label class="label">Name of the Campgrounds: </label>
+            <div class="control">
+                <input class="input" type="text" placeholder="e.g Silicon Rest" name="campground[name]" value="<%=campground.name%>">
+            </div>
+        </div>
+    
+        <div class="field">
+            <label class="label">Image Link: </label>
+            <div class="control">
+                <input class="input" type="text" name="campground[image]" value="<%=campground.image%>" placeholder="link">
+            </div>
+        </div>
+    
+        <textarea class="textarea" name="description" placeholder="10 lines of textarea" rows="10"><%=campground.description%></textarea>
+        <br>
+        <input type="submit" class="button is-info">
+    </form>
+</div>
+
 
 <% include ../partials/footer %>

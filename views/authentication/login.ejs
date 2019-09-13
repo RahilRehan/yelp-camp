@@ -1,11 +1,35 @@
 <% include ../partials/header %>
 
-<h1>Login!</h1>
+<div class="block">
+    <section class="hero is-success">
+            <div class="hero-body">
+                <div class="container">
+                <h1 class="title">Login</h1>
+                </div>
+            </div>
+    </section>
+</div>
 
-<form action="/login", method="POST">
-    Username: <input type="text" name="username">
-    Password: <input type="password" name="password">
-    <input type="submit">
-</form>
+<div class="block">
+    <div class="container lrf">
+        <form action="/login", method="POST">
+            <div class="field">
+                <label class="label">Name</label>
+                <div class="control">
+                    <input class="input" type="text" placeholder="e.g Alex Smith" name="username">
+                </div>
+            </div>
+                
+            <div class="field">
+                <label class="label">Password</label>
+                <div class="control">
+                    <input class="input" type="password" name="password" placeholder="********">
+                </div>
+            </div>
+            <input type="submit" class="button">
+        </form>
+    </div>
+</div>
+
 
 <% include ../partials/footer %>

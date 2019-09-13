@@ -18,8 +18,7 @@ router.get("/new", middleware.isLoggedIn, function(req,res){
 });
 
 router.get("/:id", function(req,res){
-    id = req.params.id;
-    Campground.findById(id).populate("comments").exec(function(err, campground){
+    Campground.findById(req.params.id).populate("comments").exec(function(err, campground){
         res.render("campgrounds/display", {campground:campground});
     });
 });

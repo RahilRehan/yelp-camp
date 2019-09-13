@@ -1,14 +1,18 @@
 <% include ../partials/header %>
 
-<h1>Edit comment</h1>
-<a href="/campgrounds/<%= campground_id%>">Go back</a>
 
-<form action="/campgrounds/<%= campground_id %>/comments/<%=comment._id%>?_method=PUT" method="POST">
-    <label>Edit Comment: </label>
-    <input type="text" name="comment[text]" value="<%=comment.text%>">
-    <br>
-    <button type="submit" class="button">Submit</button>
-</form>
+<div class="block need-margin">
+        <form action="/campgrounds/<%= campground_id %>/comments/<%=comment._id%>?_method=PUT" method="POST" class="lrf">
+    
+            <div class="field">
+                <label class="label">Edit Comment Text </label>
+                <div class="control">
+                        <textarea class="textarea"  placeholder="10 lines of textarea" rows="10" name="comment[text]"><%=comment.text%></textarea></textarea>
+                </div>
+            </div>
+            <input type="submit" class="button is-info">
+        </form>
+    </div>
 
 
 <% include ../partials/footer %>

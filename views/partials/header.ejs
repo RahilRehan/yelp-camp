@@ -4,21 +4,41 @@
         <title>YelpCamp</title>
         <base href="/">
         <link rel="stylesheet" type="text/css" href="css/bulma.css">
+        <link rel="stylesheet" type="text/css" href="css/app.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
-        <div style="text-align:right">
-            <% if(!currentUser){ %>
-                <a href="/login">Login</a> |
-                <a href="/register">Register</a>  
-            <% }else{ %>
-                <a>Signed in as <%= currentUser.username %> </a> | 
-                <a href="/logout">Logout</a>
-            <% } %>
-        </div>
 
-        <% if(error && error.length > 0){ %>
-            <h1><%= error %></h1>
-        <% } %>
-        <% if(success && success.length > 0){ %>
-            <h1><%= success %></h1>
-        <% } %>
+    <nav class="navbar is-black" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="/">
+                <i class="fa fa-free-code-camp" aria-hidden="true"></i>&nbsp&nbsp<h1 class="title is-4"><span class="is-light">CAMPLOVE</span></h1>
+            </a>
+        </div>
+        
+        <div class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item">
+                    Home
+                </a>
+            </div>
+        
+            <div class="navbar-end">
+            <div class="navbar-item">
+                <% if(!currentUser){ %>
+                    <div class="buttons">
+                        <a class="button is-info is-outlined is-small" href="/register">
+                            Register
+                        </a>
+                        <a class="button is-outlined is-success is-small" href="/login">
+                            Log in
+                        </a>
+                    </div>
+                <% } else{ %>
+                    <span class="is-primary">Signed in as <%= currentUser.username %> </span>&nbsp&nbsp
+                    <a class="button is-warning is-small is-outlined" href="/logout">Logout</a>
+                <% } %> 
+            </div>
+            </div>
+        </div>
+    </nav>

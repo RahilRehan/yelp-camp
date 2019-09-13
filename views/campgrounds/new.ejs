@@ -1,16 +1,27 @@
 <% include ../partials/header %>
-<a href="/campgrounds">Go back</a>
-<form action="/campgrounds" method="POST">
-    <label>Enter name of campground:</label>
-    <input type="text" placeholder="Name" name="name">
-    <br>
-    <label>Enter image link:</label>
-    <input type="text" placeholder="Link" name="link">
-    <br>
-    <label>Enter Description:</label>
-    <textarea name="description" cols="30" rows="10">Enter Description: </textarea>
-    <br>
-    <button type="submit" class="button">Submit</button>
-</form>
+
+<div class="block need-margin">
+    <form action="/campgrounds" method="POST" class="lrf">
+
+        <div class="field">
+            <label class="label">Name of the Campgrounds: </label>
+            <div class="control">
+                <input class="input" type="text" placeholder="e.g Silicon Rest" name="name">
+            </div>
+        </div>
+    
+        <div class="field">
+            <label class="label">Image Link: </label>
+            <div class="control">
+                <input class="input" type="text" name="link" placeholder="link">
+            </div>
+        </div>
+    
+        <textarea class="textarea" name="description" placeholder="10 lines of textarea" rows="10"></textarea>
+        <br>
+        <input type="submit" class="button is-info">
+    </form>
+</div>
+
 
 <% include ../partials/footer %>

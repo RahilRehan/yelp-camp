@@ -1,13 +1,17 @@
 <% include ../partials/header %>
 
 
-<a href="/campgrounds/<%= campground._id%>">Go back</a>
-<form action="/campgrounds/<%= campground._id %>/comments" method="POST">
-    <label>Enter Comment: </label>
-    <input type="text" name="comment[text]">
-    <br>
-    <button type="submit" class="button">Submit</button>
-</form>
+<div class="block need-margin">
+    <form action="/campgrounds/<%= campground._id %>/comments" method="POST" class="lrf">
 
+        <div class="field">
+            <label class="label">Comment Text </label>
+            <div class="control">
+                    <textarea class="textarea"  placeholder="10 lines of textarea" rows="10" name="comment[text]"></textarea></textarea>
+            </div>
+        </div>
+        <input type="submit" class="button is-info">
+    </form>
+</div>
 
 <% include ../partials/footer %>
